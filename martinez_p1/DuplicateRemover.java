@@ -4,8 +4,6 @@ Create a utility class called DuplicateRemover.
 The unique words should be stored in an instance variable called uniqueWords.
 
 
-Create a separate class called Application that contains a main method which illustrates the use of DuplicateRemover
-by calling both the remove and write methods. Your input file must be called problem1.txt and your output file must be called unique_words.txt.
 
 */
 import java.io.File;
