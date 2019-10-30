@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
 
+
 public class DuplicateCounter
 {
   //instance variable called wordCounter

@@ -6,6 +6,8 @@ The unique words should be stored in an instance variable called uniqueWords.
 
 
 */
+import java.io.*;
+import java.util.*;
 import java.io.File;
 import java.util.Arrays;
 import java.io.FileInputStream;
@@ -18,7 +20,7 @@ import java.io.FileNotFoundException;
 public class DuplicateRemover
 {
   private static String[] uniqueWords = new String[100];
-  private static String[] uniqueWordsCheck = new String[100];
+  private static ArrayList<String> uniqueW = new ArrayList<String>(20);
   private static String holdWord = null;
   private static Scanner scr = null;
   private static FileInputStream fileByteStream = null;
@@ -40,6 +42,7 @@ public class DuplicateRemover
        if(i == 0)
        {
         uniqueWords[i] = holdWord;
+        uniqueW.add(i,holdWord);
       }
        else
        {
