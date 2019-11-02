@@ -18,7 +18,7 @@ public class DuplicateCounter
   private static int holdVal;
   private static int i = 0;
   private static Scanner scr = null;
-  private static FileInputStream fileByteStream = null;
+  private static FileInputStream fileInStream = null;
   private static FileOutputStream fileOutStream = null;
   private static PrintWriter writer = null;
   Map<String, Integer> wordCounter = new HashMap<String, Integer>();
@@ -27,8 +27,8 @@ public class DuplicateCounter
   //uses a Map of Strings to count how many times each word occurs in dataFile.
   public void count(String dataFile) throws FileNotFoundException, IOException
   {
-    fileByteStream = new FileInputStream(dataFile);
-    scr = new Scanner(fileByteStream);
+    fileInStream = new FileInputStream(dataFile);
+    scr = new Scanner(fileInStream);
 
     while (scr.hasNextLine())
     {
@@ -44,7 +44,7 @@ public class DuplicateCounter
         i++;
       }
     }
-    fileByteStream.close();
+    fileInStream.close();
 
   }
   //Create an instance method called write that takes a single parameter called outputFile
@@ -60,6 +60,6 @@ public class DuplicateCounter
     }
     writer.flush();
 
-    fileByteStream.close();
+    fileInStream.close();
   }
 }

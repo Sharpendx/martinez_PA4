@@ -18,7 +18,7 @@ public class DuplicateRemover
 {
   private static String holdWord = null;
   private static Scanner scr = null;
-  private static FileInputStream fileByteStream = null;
+  private static FileInputStream fileInStream = null;
   private static FileOutputStream fileOutStream = null;
   private static PrintWriter writer = null;
   Map<String, String> uniqueWords = new HashMap<String, String>();
@@ -27,15 +27,15 @@ public class DuplicateRemover
   //Set of Strings to eliminate duplicate words from dataFile.
   public void remove(String dataFile) throws FileNotFoundException, IOException
   {
-    fileByteStream = new FileInputStream(dataFile);
-    scr = new Scanner(fileByteStream);
+    fileInStream = new FileInputStream(dataFile);
+    scr = new Scanner(fileInStream);
 
      while (scr.hasNextLine())
      {
        holdWord = scr.nextLine();
        uniqueWords.put(holdWord,holdWord);
      }
-     fileByteStream.close();
+     fileInStream.close();
   }
 //Create an instance method called write that takes a single parameter called outputFile (representing the path to a text file) and writes
 //the words contained in uniqueWords to the file pointed to by outputFile. The output file should be overwritten if it already exists, and created if it does not exist.
@@ -50,6 +50,6 @@ public class DuplicateRemover
 		}
     writer.flush();
 
-    fileByteStream.close();
+    fileInStream.close();
   }
 }
