@@ -1,10 +1,5 @@
 /*
 Create a utility class called DuplicateRemover.
-
-The unique words should be stored in an instance variable called uniqueWords.
-
-
-
 */
 import java.io.*;
 import java.util.*;
@@ -16,18 +11,17 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DuplicateRemover
 {
-  private static String[] uniqueWords = new String[100];
-  private static ArrayList<String> uniqueW = new ArrayList<String>(20);
   private static String holdWord = null;
   private static Scanner scr = null;
   private static FileInputStream fileByteStream = null;
   private static FileOutputStream fileOutStream = null;
-  private static int i;
   private static PrintWriter writer = null;
-  private static boolean isSame = false;
+  Map<String, String> uniqueWords = new HashMap<String, String>();
 
   //Create an instance method called remove that takes a single parameter called dataFile (representing the path to a text file) and uses a
   //Set of Strings to eliminate duplicate words from dataFile.
@@ -35,40 +29,11 @@ public class DuplicateRemover
   {
     fileByteStream = new FileInputStream(dataFile);
     scr = new Scanner(fileByteStream);
-    i = 0;
+
      while (scr.hasNextLine())
      {
        holdWord = scr.nextLine();
-       if(i == 0)
-       {
-        uniqueWords[i] = holdWord;
-        uniqueW.add(i,holdWord);
-      }
-       else
-       {
-         System.out.println("Running the else");
-         int s = i;
-         while(s > 0)
-         {
-           if(holdWord == uniqueWords[s - 1])
-           {
-             isSame = true;
-           }
-           s--;
-         }
-
-         if(isSame)
-         {
-           uniqueWords[i] = null;
-           isSame = false;
-         }
-         else
-         {
-           uniqueWords[i] = holdWord;
-         }
-       }
-       //uniqueWordsCheck[i] = holdWord;
-       i++;
+       uniqueWords.put(holdWord,holdWord);
      }
      fileByteStream.close();
   }
@@ -79,17 +44,10 @@ public class DuplicateRemover
     fileOutStream = new FileOutputStream(outputFile);
     writer = new PrintWriter(fileOutStream);
 
-    for(int k = 0; k < uniqueWords.length ; k++)
+    for (Map.Entry<String, String> entry : uniqueWords.entrySet())
     {
-      if(uniqueWords[k] == null)
-      {
-        continue;
-      }
-      else
-      {
-      writer.println(uniqueWords[k]);
-      }
-    }
+        writer.println(entry.getKey());
+		}
     writer.flush();
 
     fileByteStream.close();
